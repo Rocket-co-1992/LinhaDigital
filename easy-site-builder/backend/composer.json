@@ -1,26 +1,27 @@
 {
-  "name": "easy-site-builder",
-  "description": "A simple site builder for small entrepreneurs, freelancers, agencies, and SMEs.",
+  "name": "easy-site-builder/backend",
+  "description": "Backend for Easy Site Builder",
   "type": "project",
   "license": "MIT",
   "require": {
     "php": "^8.0",
     "symfony/framework-bundle": "^6.0",
-    "symfony/doctrine-bridge": "^6.0",
-    "symfony/orm-pack": "^2.0",
-    "doctrine/annotations": "^1.13",
-    "doctrine/orm": "^2.10",
+    "symfony/doctrine-bundle": "^2.7",
+    "doctrine/orm": "^2.13",
+    "doctrine/doctrine-bundle": "^2.7",
+    "doctrine/doctrine-migrations-bundle": "^3.2",
     "symfony/twig-bundle": "^6.0",
     "symfony/security-bundle": "^6.0",
     "symfony/mailer": "^6.0",
     "symfony/form": "^6.0",
-    "league/flysystem-bundle": "^2.0",
-    "symfony/webpack-encore-bundle": "^1.0"
+    "symfony/validator": "^6.0",
+    "symfony/asset": "^6.0",
+    "twig/twig": "^3.0"
   },
   "require-dev": {
-    "symfony/debug-pack": "^1.0",
-    "symfony/maker-bundle": "^1.0",
-    "symfony/test-pack": "^1.0"
+    "symfony/debug-bundle": "^6.0",
+    "symfony/maker-bundle": "^1.48",
+    "symfony/var-dumper": "^6.0"
   },
   "autoload": {
     "psr-4": {
@@ -29,15 +30,20 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "Tests\\": "tests/"
+      "App\\Tests\\": "tests/"
     }
   },
-  "scripts": {
-    "post-install-cmd": [
-      "Symfony\\Bundle\\MakerBundle\\MakerBundle::install"
-    ],
-    "post-update-cmd": [
-      "Symfony\\Bundle\\MakerBundle\\MakerBundle::install"
-    ]
+  "config": {
+    "optimize-autoloader": true,
+    "preferred-install": {
+      "*": "dist"
+    },
+    "sort-packages": true
+  },
+  "extra": {
+    "symfony": {
+      "allow-contrib": false,
+      "require": "6.0.*"
+    }
   }
 }

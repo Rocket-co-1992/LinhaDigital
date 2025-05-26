@@ -7,6 +7,8 @@ module.exports = {
     path: path.resolve(__dirname, 'build/js'),
     clean: true
   },
+  mode: 'development',
+  devtool: 'source-map',
   module: {
     rules: [
       {
@@ -22,6 +24,12 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ['.js']
+    extensions: ['.js'],
+    alias: {
+      'alpinejs': path.resolve(__dirname, 'node_modules/alpinejs/dist/module.esm.js')
+    }
+  },
+  externals: {
+    'alpinejs': 'Alpine'
   }
 };
