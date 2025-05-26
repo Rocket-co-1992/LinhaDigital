@@ -1,0 +1,20 @@
+# backend/config/packages/framework.yaml
+
+framework:
+    secret: '%env(APP_SECRET)%'
+    csrf_protection:
+        enabled: true
+    session:
+        handler_id: null
+        cookie_secure: auto
+    templating:
+        engines: ['twig']
+    router:
+        utf8: true
+    http_method_override: true
+    translator:
+        paths:
+            - '%kernel.project_dir%/translations'
+    assets:
+        version: 'v1'  # Change this to invalidate the cache when assets change
+        version_strategy: 'Symfony\Component\Asset\VersionStrategy\EmptyVersionStrategy'

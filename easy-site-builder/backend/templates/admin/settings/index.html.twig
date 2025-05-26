@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configurações - Painel Admin</title>
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+</head>
+<body>
+    <div class="container mx-auto">
+        <h1 class="text-2xl font-bold my-4">Configurações Globais</h1>
+
+        <form action="{{ path('settings_update') }}" method="POST" class="space-y-4">
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Salvar Configurações</button>
+            {{ form_end(form) }}
+        </form>
+    </div>
+</body>
+</html>

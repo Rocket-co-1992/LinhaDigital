@@ -1,0 +1,43 @@
+{
+  "name": "easy-site-builder",
+  "description": "A simple site builder for small entrepreneurs, freelancers, agencies, and SMEs.",
+  "type": "project",
+  "license": "MIT",
+  "require": {
+    "php": "^8.0",
+    "symfony/framework-bundle": "^6.0",
+    "symfony/doctrine-bridge": "^6.0",
+    "symfony/orm-pack": "^2.0",
+    "doctrine/annotations": "^1.13",
+    "doctrine/orm": "^2.10",
+    "symfony/twig-bundle": "^6.0",
+    "symfony/security-bundle": "^6.0",
+    "symfony/mailer": "^6.0",
+    "symfony/form": "^6.0",
+    "league/flysystem-bundle": "^2.0",
+    "symfony/webpack-encore-bundle": "^1.0"
+  },
+  "require-dev": {
+    "symfony/debug-pack": "^1.0",
+    "symfony/maker-bundle": "^1.0",
+    "symfony/test-pack": "^1.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests/"
+    }
+  },
+  "scripts": {
+    "post-install-cmd": [
+      "Symfony\\Bundle\\MakerBundle\\MakerBundle::install"
+    ],
+    "post-update-cmd": [
+      "Symfony\\Bundle\\MakerBundle\\MakerBundle::install"
+    ]
+  }
+}

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+</head>
+<body>
+    <div class="container mx-auto">
+        <header class="py-6">
+            <h1 class="text-3xl font-bold">Admin Dashboard</h1>
+        </header>
+        <main>
+            <section class="mb-6">
+                <h2 class="text-2xl font-semibold">Statistics</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="bg-white p-4 rounded shadow">
+                        <h3 class="font-bold">Total Sites</h3>
+                        <p>{{ totalSites }}</p>
+                    </div>
+                    <div class="bg-white p-4 rounded shadow">
+                        <h3 class="font-bold">Total Pages</h3>
+                        <p>{{ totalPages }}</p>
+                    </div>
+                    <div class="bg-white p-4 rounded shadow">
+                        <h3 class="font-bold">Total Feedback</h3>
+                        <p>{{ totalFeedback }}</p>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <h2 class="text-2xl font-semibold">Recent Activity</h2>
+                <ul class="list-disc pl-5">
+                    {% for activity in recentActivities %}
+                        <li>{{ activity }}</li>
+                    {% endfor %}
+                </ul>
+            </section>
+        </main>
+    </div>
+    <script src="{{ asset('js/app.js') }}"></script>
+</body>
+</html>

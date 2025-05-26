@@ -1,0 +1,23 @@
+{
+  "name": "easy-site-builder",
+  "version": "1.0.0",
+  "description": "A simple site builder for small entrepreneurs, freelancers, agencies, and SMEs.",
+  "main": "assets/js/app.js",
+  "scripts": {
+    "build": "npm run build:css && npm run build:js",
+    "build:css": "tailwindcss build assets/css/app.css -o build/css/app.css",
+    "build:js": "webpack --config webpack.config.js"
+  },
+  "dependencies": {
+    "alpinejs": "^3.0.0",
+    "tailwindcss": "^2.0.0",
+    "postcss": "^8.0.0",
+    "autoprefixer": "^10.0.0"
+  },
+  "devDependencies": {
+    "webpack": "^5.0.0",
+    "webpack-cli": "^4.0.0"
+  },
+  "author": "Your Name",
+  "license": "MIT"
+}

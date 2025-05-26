@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Páginas - Painel de Administração</title>
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+</head>
+<body>
+    <div class="container mx-auto">
+        <h1 class="text-2xl font-bold my-4">Gerenciar Páginas</h1>
+        <a href="{{ path('page_create') }}" class="bg-blue-500 text-white px-4 py-2 rounded">Criar Nova Página</a>
+        
+        <table class="min-w-full mt-4">
+            <thead>
+                <tr>
+                    <th class="border px-4 py-2">ID</th>
+                    <th class="border px-4 py-2">Nome</th>
+                    <th class="border px-4 py-2">Slug</th>
+                    <th class="border px-4 py-2">Publicado</th>
+                    <th class="border px-4 py-2">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for page in pages %}
+                <tr>
+                    <td class="border px-4 py-2">{{ page.id }}</td>
+                    <td class="border px-4 py-2">{{ page.name }}</td>
+                    <td class="border px-4 py-2">{{ page.slug }}</td>
+                    <td class="border px-4 py-2">{{ page.isPublished ? 'Sim' : 'Não' }}</td>
+                    <td class="border px-4 py-2">
+                        <a href="{{ path('page_edit', { id: page.id }) }}" class="text-blue-500">Editar</a>
+                        <a href="{{ path('page_delete', { id: page.id }) }}" class="text-red-500">Excluir</a>
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="5" class="border px-4 py-2 text-center">Nenhuma página encontrada.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
