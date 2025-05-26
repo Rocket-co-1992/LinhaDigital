@@ -31,4 +31,8 @@ a:hover {
     @apply bg-blue-600; /* Darker blue on hover */
 }
 
+.site-builder {
+  /* Add your custom styles here */
+}
+
 /* Additional custom styles can be added below */

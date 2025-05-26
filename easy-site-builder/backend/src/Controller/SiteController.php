@@ -11,6 +11,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * @Route("/admin")
+ */
 class SiteController extends AbstractController
 {
     private $entityManager;
@@ -23,7 +26,7 @@ class SiteController extends AbstractController
     }
 
     /**
-     * @Route("/admin/sites", name="site_index")
+     * @Route("/sites", name="admin_sites_index")
      */
     public function index(): Response
     {
@@ -35,7 +38,7 @@ class SiteController extends AbstractController
     }
 
     /**
-     * @Route("/admin/sites/new", name="site_new")
+     * @Route("/sites/new", name="site_new")
      */
     public function new(Request $request): Response
     {
@@ -47,7 +50,7 @@ class SiteController extends AbstractController
             $this->entityManager->persist($site);
             $this->entityManager->flush();
 
-            return $this->redirectToRoute('site_index');
+            return $this->redirectToRoute('admin_sites_index');
         }
 
         return $this->render('admin/sites/edit.html.twig', [
@@ -56,7 +59,7 @@ class SiteController extends AbstractController
     }
 
     /**
-     * @Route("/admin/sites/{id}/edit", name="site_edit")
+     * @Route("/sites/{id}/edit", name="site_edit")
      */
     public function edit(Request $request, Site $site): Response
     {
@@ -66,7 +69,7 @@ class SiteController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->entityManager->flush();
 
-            return $this->redirectToRoute('site_index');
+            return $this->redirectToRoute('admin_sites_index');
         }
 
         return $this->render('admin/sites/edit.html.twig', [
@@ -76,7 +79,7 @@ class SiteController extends AbstractController
     }
 
     /**
-     * @Route("/admin/sites/{id}", name="site_delete", methods={"DELETE"})
+     * @Route("/sites/{id}/delete", name="site_delete", methods={"POST"})
      */
     public function delete(Request $request, Site $site): Response
     {
@@ -85,6 +88,6 @@ class SiteController extends AbstractController
             $this->entityManager->flush();
         }
 
-        return $this->redirectToRoute('site_index');
+        return $this->redirectToRoute('admin_sites_index');
     }
 }

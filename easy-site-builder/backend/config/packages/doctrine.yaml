@@ -1,54 +1,17 @@
-database:
-    driver: 'pdo_mysql'
-    server_version: '5.7' # or your MySQL version
-    charset: utf8mb4
-    url: '%env(resolve:DATABASE_URL)%'
-
-orm:
-    auto_generate_proxy_classes: true
-    naming_strategy: doctrine.orm.naming_strategy.underscore
-    auto_mapping: true
-
-mappings:
-    App\Entity\Site:
-        is_bundle: false
-        type: annotation
-        dir: '%kernel.project_dir%/src/Entity'
-        prefix: 'App\Entity'
-        alias: Site
-    App\Entity\Page:
-        is_bundle: false
-        type: annotation
-        dir: '%kernel.project_dir%/src/Entity'
-        prefix: 'App\Entity'
-        alias: Page
-    App\Entity\ModuleInstance:
-        is_bundle: false
-        type: annotation
-        dir: '%kernel.project_dir%/src/Entity'
-        prefix: 'App\Entity'
-        alias: ModuleInstance
-    App\Entity\SiteSettings:
-        is_bundle: false
-        type: annotation
-        dir: '%kernel.project_dir%/src/Entity'
-        prefix: 'App\Entity'
-        alias: SiteSettings
-    App\Entity\Feedback:
-        is_bundle: false
-        type: annotation
-        dir: '%kernel.project_dir%/src/Entity'
-        prefix: 'App\Entity'
-        alias: Feedback
-    App\Entity\DemoInstance:
-        is_bundle: false
-        type: annotation
-        dir: '%kernel.project_dir%/src/Entity'
-        prefix: 'App\Entity'
-        alias: DemoInstance
-    App\Entity\Media:
-        is_bundle: false
-        type: annotation
-        dir: '%kernel.project_dir%/src/Entity'
-        prefix: 'App\Entity'
-        alias: Media
+doctrine:
+    dbal:
+        url: '%env(resolve:DATABASE_URL)%'
+        server_version: '5.7'
+        charset: utf8mb4
+        
+    orm:
+        auto_generate_proxy_classes: true
+        naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
+        auto_mapping: true
+        mappings:
+            App:
+                is_bundle: false
+                type: annotation
+                dir: '%kernel.project_dir%/src/Entity'
+                prefix: 'App\Entity'
+                alias: App

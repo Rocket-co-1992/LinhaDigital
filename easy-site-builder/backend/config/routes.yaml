@@ -1,69 +1,35 @@
 # backend/config/routes.yaml
 
-site_index:
-    path: /sites
-    controller: App\Controller\SiteController::index
+admin_dashboard:
+    path: /admin
+    controller: App\Controller\AdminController::dashboard
 
-site_create:
-    path: /sites/create
-    controller: App\Controller\SiteController::create
+# Site management routes
+admin_sites:
+    resource: App\Controller\SiteController
+    type: annotation
 
-site_edit:
-    path: /sites/{id}/edit
-    controller: App\Controller\SiteController::edit
+# Page management routes  
+admin_pages:
+    resource: App\Controller\PageController
+    type: annotation
 
-site_delete:
-    path: /sites/{id}/delete
-    controller: App\Controller\SiteController::delete
+# Module management routes
+admin_modules:
+    resource: App\Controller\ModuleController
+    type: annotation
 
-page_index:
-    path: /sites/{siteId}/pages
-    controller: App\Controller\PageController::index
+# Settings routes
+admin_settings:
+    resource: App\Controller\SettingsController
+    type: annotation
 
-page_create:
-    path: /sites/{siteId}/pages/create
-    controller: App\Controller\PageController::create
+# Feedback routes
+feedback:
+    resource: App\Controller\FeedbackController
+    type: annotation
 
-page_edit:
-    path: /sites/{siteId}/pages/{id}/edit
-    controller: App\Controller\PageController::edit
-
-page_delete:
-    path: /sites/{siteId}/pages/{id}/delete
-    controller: App\Controller\PageController::delete
-
-module_index:
-    path: /sites/{siteId}/modules
-    controller: App\Controller\ModuleController::index
-
-module_create:
-    path: /sites/{siteId}/modules/create
-    controller: App\Controller\ModuleController::create
-
-module_edit:
-    path: /sites/{siteId}/modules/{id}/edit
-    controller: App\Controller\ModuleController::edit
-
-module_delete:
-    path: /sites/{siteId}/modules/{id}/delete
-    controller: App\Controller\ModuleController::delete
-
-settings_index:
-    path: /settings
-    controller: App\Controller\SettingsController::index
-
-feedback_index:
-    path: /sites/{siteId}/feedback
-    controller: App\Controller\FeedbackController::index
-
-demo_index:
-    path: /sites/{siteId}/demos
-    controller: App\Controller\DemoController::index
-
-demo_create:
-    path: /sites/{siteId}/demos/create
-    controller: App\Controller\DemoController::create
-
-demo_delete:
-    path: /sites/{siteId}/demos/{id}/delete
-    controller: App\Controller\DemoController::delete
+# Demo routes
+demo:
+    resource: App\Controller\DemoController
+    type: annotation

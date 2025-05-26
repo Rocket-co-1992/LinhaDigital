@@ -1,9 +1,14 @@
+<?php
+
 namespace App\Entity;
 
+use App\Repository\PageRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\PageRepository")
+ * @ORM\Entity(repositoryClass=PageRepository::class)
  * @ORM\Table(name="pages")
  */
 class Page
@@ -16,9 +21,10 @@ class Page
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\ManyToOne(targetEntity=Site::class, inversedBy="pages")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $siteId;
+    private $site;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -33,7 +39,28 @@ class Page
     /**
      * @ORM\Column(type="boolean")
      */
-    private $isPublished;
+    private $isPublished = false;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $content;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $createdAt;
+
+    /**
+     * @ORM\OneToMany(targetEntity=ModuleInstance::class, mappedBy="page", orphanRemoval=true)
+     */
+    private $moduleInstances;
+
+    public function __construct()
+    {
+        $this->moduleInstances = new ArrayCollection();
+        $this->createdAt = new \DateTime();
+    }
 
     // Getters and Setters
 
@@ -42,14 +69,14 @@ class Page
         return $this->id;
     }
 
-    public function getSiteId(): ?int
+    public function getSite(): ?Site
     {
-        return $this->siteId;
+        return $this->site;
     }
 
-    public function setSiteId(int $siteId): self
+    public function setSite(?Site $site): self
     {
-        $this->siteId = $siteId;
+        $this->site = $site;
 
         return $this;
     }
@@ -86,6 +113,56 @@ class Page
     public function setIsPublished(bool $isPublished): self
     {
         $this->isPublished = $isPublished;
+
+        return $this;
+    }
+
+    public function getContent(): ?string
+    {
+        return $this->content;
+    }
+
+    public function setContent(?string $content): self
+    {
+        $this->content = $content;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getModuleInstances(): Collection
+    {
+        return $this->moduleInstances;
+    }
+
+    public function addModuleInstance(ModuleInstance $moduleInstance): self
+    {
+        if (!$this->moduleInstances->contains($moduleInstance)) {
+            $this->moduleInstances[] = $moduleInstance;
+            $moduleInstance->setPage($this);
+        }
+
+        return $this;
+    }
+
+    public function removeModuleInstance(ModuleInstance $moduleInstance): self
+    {
+        if ($this->moduleInstances->removeElement($moduleInstance)) {
+            if ($moduleInstance->getPage() === $this) {
+                $moduleInstance->setPage(null);
+            }
+        }
 
         return $this;
     }
