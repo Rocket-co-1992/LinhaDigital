@@ -1,7 +1,0 @@
-# backend/config/packages/twig.yaml
-
-twig:
-    paths:
-        '%kernel.project_dir%/templates': ~
-    debug: '%kernel.debug%'
-    strict_variables: '%kernel.debug%'
